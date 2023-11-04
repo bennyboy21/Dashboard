@@ -542,7 +542,7 @@
                 lifetimeInfo.gasCost = snapshot.val().gasCost
                 lifetimeInfo.profit = snapshot.val().profit
 
-                document.getElementById("money-In-Account").innerText = configureNum(lifetimeInfo.totalIncome)
+                document.getElementById("money-In-Account").innerText = configureNum(lifetimeInfo.profit)
                 document.getElementById("total-Income").innerText = configureNum(lifetimeInfo.totalIncome)
                 document.getElementById("operation-Cost").innerText = configureNum(lifetimeInfo.gasCost)
                 document.getElementById("profit-Text").innerText = configureNum(lifetimeInfo.profit)
@@ -554,7 +554,7 @@
                     monthInfo.gasCost = snapshot.val().gasCost
                     monthInfo.profit = snapshot.val().profit
 
-                    document.getElementById("amount-Made-This-Month").innerText = configureNum2(snapshot.val().totalIncome)
+                    document.getElementById("amount-Made-This-Month").innerText = configureNum (snapshot.val().profit)
                     data[2] = Number(snapshot.val().totalIncome)
                     console.log(snapshot.val().totalIncome)
                 }
@@ -562,7 +562,7 @@
 
             firebase.database().ref("Months/" + month2).once("value", function(snapshot){
                 if (snapshot.exists()){
-                    document.getElementById("amount-Made-Last-Month").innerText = configureNum2(snapshot.val().totalIncome)
+                    document.getElementById("amount-Made-Last-Month").innerText = configureNum (snapshot.val().profit)
                     data[1] = Number(snapshot.val().totalIncome)
                 }
             })
@@ -579,20 +579,20 @@
         }
 
         function configureNum(num) {
-            if(num < 100000) {
-                return USD.format(num)
-            } else {
-                return USD2.format(num)
-            }
-        }
-
-        function configureNum2(num) {
             if(num < 10000) {
                 return USD.format(num)
             } else {
                 return USD2.format(num)
             }
         }
+
+        // function configureNum (num) {
+        //     if(num > 10000) {
+        //         return USD.format(num)
+        //     } else {
+        //         return USD2.format(num)
+        //     }
+        // }
 
         function loadBody() {
             document.querySelector("body").style.transition = ".5s"
